@@ -103,35 +103,33 @@ int		ft_check_zero(char *str)
 	return (0);
 }
 
-void	ft_write_lion(int *i, char *nb)
+void	ft_write_lion(int *i, char c)
 {
-	if (!ft_check_zero(nb) && (int)(ft_strlen(nb) / 3) != *i)
-		*i = -1;
-	if (*i == 1)
+	if (*i == 1 && c != '0')
 		write(1, " thousand", 10);
-	else if (*i == 2)
+	else if (*i == 2 && c != '0')
 		write(1, " million", 9);
-	else if (*i == 3)
+	else if (*i == 3 && c != '0')
 		write(1, " billion", 9);
-	else if (*i == 4)
+	else if (*i == 4 && c != '0')
 		write(1, " trillion", 10);
-	else if (*i == 5)
+	else if (*i == 5 && c != '0')
 		write(1, " quadrillion", 13);
-	else if (*i == 6)
+	else if (*i == 6 && c != '0')
 		write(1, " quintillion", 13);
-	else if (*i == 7)
+	else if (*i == 7 && c != '0')
 		write(1, " sextillion", 12);
-	else if (*i == 8)
+	else if (*i == 8 && c != '0')
 		write(1, " septillion", 12);
-	else if (*i == 9)
+	else if (*i == 9 && c != '0')
 		write(1, " octillion", 11);
-	else if (*i == 10)
+	else if (*i == 10 && c != '0')
 		write(1, " nonillion", 11);
-	else if (*i == 11)
+	else if (*i == 11 && c != '0')
 		write(1, " decillion", 11);
-	else if (*i == 12)
+	else if (*i == 12 && c != '0')
 		write(1, " undecillion", 13);
-	else if (*i == 13)
+	else if (*i == 13 && c != '0')
 		write(1, " dodecillion", 13);
 }
 
@@ -144,7 +142,7 @@ void	alg_big(char **numbers_dict, char **words_dict, char *nb, int nb_len)
 	if (nb_len % 3 != 0)
 	{
 		ft_write_first(numbers_dict, words_dict, nb, nb_len);
-		ft_write_lion(&i, &nb[nb_len - (i + 1) * 3]);
+		ft_write_lion(&i, '1');
 		if (nb[nb_len % 3] != '0')
 			write(1, " ", 1);
 		i--;
@@ -157,7 +155,7 @@ void	alg_big(char **numbers_dict, char **words_dict, char *nb, int nb_len)
 			if(!nb_three)
 				return ;
 		alg_three(numbers_dict, words_dict, nb_three);
-		ft_write_lion(&i, &nb[nb_len - (i + 1) * 3]);
+		ft_write_lion(&i, nb_three[0]);
 		if (nb[nb_len % 3 + 1] != '0')
 			write(1, " ", 1);
 		i--;
