@@ -2,71 +2,71 @@
 
 char	**ft_parse_numbers(char *full_dict)
 {
-	char	*numbers_dict;
+	char	*nb_d;
 	int		i;
 	int		j;
 	char	**result;
 
 	result = NULL;
-	numbers_dict = malloc(1024);
-	if (!numbers_dict)
+	nb_d = malloc(1024);
+	if (!nb_d)
 		return (NULL);
 	i = 0;
 	j = 0;
 	while (full_dict[j])
 	{
 		while (full_dict[j] >= '0' && full_dict[j] <= '9')
-			numbers_dict[i++] = full_dict[j++];
-		numbers_dict[i++] = ' ';
+			nb_d[i++] = full_dict[j++];
+		nb_d[i++] = ' ';
 		while (full_dict[j] && !(full_dict[j] >= '0' && full_dict[j] <= '9'))
 			j++;
 	}
-	numbers_dict[i] = '\0';
-	result = ft_split(numbers_dict, ' ');
-	free(numbers_dict);
+	nb_d[i] = '\0';
+	result = ft_split(nb_d, ' ');
+	free(nb_d);
 	return (result);
 }
 
 char	**ft_parse_words(char *full_dict)
 {
-	char	*words_dict;
+	char	*wd_d;
 	int		i;
 	int		j;
 	char	**result;
 
 	result = NULL;
-	words_dict = malloc(1024);
-	if (!words_dict)
+	wd_d = malloc(1024);
+	if (!wd_d)
 		return (NULL);
 	i = 0;
 	j = 0;
 	while (full_dict[j])
 	{
-		while (full_dict[j] && full_dict[j] != ':') 
+		while (full_dict[j] && full_dict[j] != ':')
 			j++;
 		while (full_dict[j] == ' ' || full_dict[j] == ':')
 			j++;
 		while (full_dict[j] && full_dict[j] != '\n')
-				words_dict[i++] = full_dict[j++];
-		words_dict[i++] = ' ';
+			wd_d[i++] = full_dict[j++];
+		wd_d[i++] = ' ';
 	}
-	words_dict[i] = '\0';
-	result = ft_split(words_dict, ' ');
-	free(words_dict);
+	wd_d[i] = '\0';
+	result = ft_split(wd_d, ' ');
+	free(wd_d);
 	return (result);
 }
 
 void	ft_parse(int fd, char *nb)
 {
 	char	*full_dict;
-	char	**numbers_dict;
-	char	**words_dict;
+	char	**nb_d;
+	char	**wd_d;
 
 	full_dict = ft_parse_dict(fd);
-	numbers_dict = ft_parse_numbers(full_dict);
-	words_dict = ft_parse_words(full_dict);
+	nb_d = ft_parse_numbers(full_dict);
+	wd_d = ft_parse_words(full_dict);
 	free(full_dict);
-	alg_base(numbers_dict, words_dict, nb);
+	alg_base(nb_d, wd_d, nb);
 }
 
 static void	ft_combine(char *buffer, char **dict)
@@ -110,6 +110,5 @@ char	*ft_parse_dict(int fd)
 	}
 	dict[i] = '\0';
 	free(buffer);
-
 	return (dict);
 }

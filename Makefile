@@ -19,8 +19,10 @@ HEADER = Makefile rush.h
 SRC = main.c \
 		parse.c \
 		rush_utils.c \
+		rush_utils_extra.c \
 		ft_split.c \
 		alg.c \
+		alg_utils.c \
 	
 OBJ = $(SRC:.c=.o)
 

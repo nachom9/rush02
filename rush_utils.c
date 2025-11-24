@@ -33,7 +33,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 	{
 		i++;
 	}
-	//printf("i = %ld diff = %d\n\n", i, ((unsigned char) s1[i] - (unsigned char) s2[i]));
 	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }
 
@@ -84,50 +83,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-void	ft_free(char **numbers_dict, char **words_dict)
+void	ft_free(char **nb_d, char **wd_d)
 {
 	int		i;
 
 	i = 0;
-	while (numbers_dict[i])
+	while (nb_d[i])
 	{
-		free(numbers_dict[i]);
+		free(nb_d[i]);
 		i++;
 	}
 	i = 0;
-	free(numbers_dict);
-	while (words_dict[i])
+	free(nb_d);
+	while (wd_d[i])
 	{
-		free(words_dict[i]);
+		free(wd_d[i]);
 		i++;
 	}
-	free(words_dict);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	if (start >= ft_strlen((char *)s))
-	{
-		str = malloc(1);
-		if (!str)
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
-	if (len > ft_strlen(&s[start]))
-		len = ft_strlen(&s[start]);
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	while (i < len)
-	{
-		str[i] = s[start + i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	free(wd_d);
 }
